@@ -7,3 +7,31 @@ turma e exibir o número de turmas a serem formadas.
 */
 
 #include <stdio.h>
+#include <math.h>
+
+int turmas (int a, int m){
+  int t;
+  if (a % m == 0){
+    t = a/m;
+  }
+  else {
+    t = (a/m)+1;
+  return t;
+  }
+}
+
+int main (){
+  int a, m, t;
+  printf ("Qual é o total de alunos matriculados? ");
+  scanf ("%d", &a);
+  printf ("Qual é o máximo de alunos por turma? ");
+  scanf ("%d", &m);
+  t = turmas (a, m);
+  if (t == 1){
+    printf ("Apenas %d turma será formada. \n", t);
+  }
+  else{
+    printf ("%d turmas serão formadas. \n", t);
+  }
+  return 0;
+}

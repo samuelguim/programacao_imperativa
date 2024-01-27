@@ -9,7 +9,27 @@ onde se lê X e N e é exibido o número de caixas a serem adquiridas.
 #include <stdio.h>
 #include <math.h>
 
+int caixas (int x){
+  int c;
+  if (30 % x == 0){
+    c = 30/x;
+  }
+  else {
+    c = (30/x)+1;
+  return c;
+  }
+}
+
 int main (){
-  float x = ceil(1.1);
-  printf ("%f\n", x);
+  int x, n;
+  printf ("Qual é o número de comprimidos por caixa? ");
+  scanf ("%d", &x);
+  n = caixas (x);
+  if (n > 1){
+    printf ("%d caixas devem ser compradas.\n", n);
+  }
+  else{
+    printf ("%d caixa deve ser comprada.\n", n);
+  }
+  return 0;
 }
