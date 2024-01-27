@@ -7,3 +7,9 @@ onde se lê X e N e é exibido o número de caixas a serem adquiridas.
 */
 
 #include <stdio.h>
+#include <math.h>
+
+int main (){
+  float x = ceil(1.1);
+  printf ("%f\n", x);
+}

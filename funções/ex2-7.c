@@ -8,18 +8,21 @@ um módulo(função) com dois parâmetros de saída.
 
 #include <stdio.h>
 
-float mensal (float a, float b) {
-  return a*b;
+float mensal (float a, float b, float c, float *v_final, float *rendimento) {
+  float aa = a+b*c;
+  float bb = a+b*c-a;
+  v_final = & aa;
+  rendimento = & bb;
 }
 
 int main (){
-  float inicial, valor_mensal, tempo , montante;
+  float v_inicial, v_mensal, temp, *v_final, *rendimento;
   printf ("Digite o valor incicial do seu investimento: ");
-  scanf ("%f", &inicial);
+  scanf ("%f", &v_inicial);
   printf ("Digite o valor investido mensalmente no seu investimento: ");
-  scanf ("%f", &valor_mensal);
+  scanf ("%f", &v_mensal);
   printf ("Digite por quantos meses você investiu: ");
-  scanf ("%f", &tempo);
-  montante = inicial + mensal (valor_mensal, tempo);
-  printf ("Esse é o seu valor final: %.2f\n", montante);
+  scanf ("%f", &temp);
+  mensal (v_inicial, v_mensal, temp, v_final, rendimento);
+  printf ("Esse é o seu valor final: %.2f\n", *rendimento);
 }
