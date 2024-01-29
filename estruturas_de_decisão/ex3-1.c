@@ -16,3 +16,19 @@ Kombi.
 */
 
 #include <stdio.h>
+
+int main (){
+  int insc, v_kombi, v_coletivo;
+  printf ("Quantas inscrições foram realizadas? ");
+  scanf ("%d", &insc);
+  if (insc <= 11){
+    printf ("Apenas uma viagem de kombi será realizada.\n");
+  }
+  else {
+    v_coletivo = insc % 11;
+    v_kombi = (insc - v_coletivo)/11;
+    printf ("%d passagem(ns) de coletivo deverá(ão) ser comprada(s).\n", v_coletivo);
+    printf ("%d viagem(ns) de kombi será(ão) realizada(s).\n", v_kombi);
+  }
+  return 0;
+}

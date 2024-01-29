@@ -19,3 +19,19 @@ conjunto.
 */
 
 #include <stdio.h>
+
+int main (){
+  int gatos, vet_exp, vet_rec;
+  printf ("Quantos gatos serão castrados? ");
+  scanf ("%d", &gatos);
+  if (gatos <= 4){
+    printf ("Os gatos ficarão sob responsabilidade de todos os veterinários em conjunto.\n");
+  }
+  else {
+    vet_rec = gatos % 4;
+    vet_exp = (gatos - vet_rec)/4;
+    printf ("%d gatos será(ão) castrado(s) pelo veterinário recém formado.\n", vet_rec);
+    printf ("%d gato(s) será(ão) castrado(s) por cada veterinário experiente.\n", vet_exp);
+  }
+  return 0;
+}

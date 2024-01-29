@@ -11,3 +11,26 @@ quando média inferior a 5.
 */
 
 #include <stdio.h>
+
+int main (){
+  float n1, n2, n3, mf;
+  printf ("Qual a 1ª nota do aluno? ");
+  scanf ("%f", &n1);
+  printf ("Qual a 2ª nota do aluno? ");
+  scanf ("%f", &n2);
+  printf ("Qual a 3ª nota do aluno? ");
+  scanf ("%f", &n3);
+  mf = (n1+n2+n3)/3;
+
+  if (mf >= 7) {
+    printf ("O aluno foi aprovado com média %.2f\n", mf);
+  }
+  else {
+    if (mf < 7 && mf >= 5) {
+      printf ("O aluno está em recuperação pois a sua média foi %.2f\n", mf);
+    }
+    else {
+      printf ("O aluno foi reprovado pois a sua média foi %.2f\n", mf);
+    }
+  }
+}
