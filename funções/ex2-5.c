@@ -9,13 +9,17 @@ uso de função e/ou constante nativa, se houver.
 #include <stdio.h>
 #include <math.h>
 
+float quad (float n) {
+  return (n*n);
+}
+
 float area (float c) {
-return (M_PI*(c*c));
+return (M_PI*(quad (c)));
 }
 
 int main () {
   float raio;
-  printf ("Digite a área do círculo: ");
+  printf ("Digite o raio do círculo: ");
   scanf ("%f", &raio);
   raio = area (raio);
   printf ("A área do círculo é de %.2f\n", raio);
