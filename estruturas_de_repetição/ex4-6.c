@@ -1,5 +1,4 @@
 /*
-corrigir (número de aprovados nao ta aparecendo)
 */
 
 #include <stdio.h>

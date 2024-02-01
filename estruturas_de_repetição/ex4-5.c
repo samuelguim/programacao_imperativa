@@ -1,7 +1,4 @@
 /*
-
-REFAZER (O programa ainda mostra acido depois do -1)
-
 Carla é uma profissional muito dedicada! Ela é responsável por analisar
 o pH de várias substâncias e determinar se elas são ácidas, básicas ou
 neutras. Ela não para enquanto não tiver terminado de analisar todas 
@@ -41,14 +38,15 @@ int main (){
   do {
     scanf ("%d", &ph);
     if (ph == 7) {
-      printf ("NEUTRO\n");
-    }
+      printf ("NEUTRO\n"); }
     else {
-      if (ph >=7) {
-        printf ("BASICO\n");
-      }
+      if (ph >7) {
+        printf ("BASICO\n"); }
       else {
-        printf ("ACIDO\n");
+        if (ph >= 0) {
+          printf ("ACIDO\n"); }
+        else {
+          break; }
       }
     }
   }

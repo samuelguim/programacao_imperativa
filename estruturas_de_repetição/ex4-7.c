@@ -6,13 +6,13 @@
 
 int menu () {
   char selecao;
-  printf ("Deseja continuar? (S - SIM | N - NÃO)\n");
-  scanf ("%c", &selecao);
+  printf ("Deseja sair? (S - SIM | N - NÃO)\n");
+  scanf (" %c", &selecao);
   switch (selecao) {
-    case 'A':
-    case 'a': return 1; break;
-    case 'B':
-    case 'b': return 0; break;
+    case 's':
+    case 'S': return 0; break;
+    case 'n':
+    case 'N': return 1; break;
     default : printf ("Opção não existe"); return 0; break;
   }
 }
@@ -21,7 +21,8 @@ int main () {
   int port, mat, aprovados, continuar;
   float red;
   printf ("Digite os resultados dos inscritos: \n");
-  do {
+  continuar = 1;
+  while (continuar == 1) {
     scanf ("%d", &port);
     scanf ("%d", &mat);
     scanf ("%f", &red);
@@ -31,6 +32,5 @@ int main () {
       aprovados = aprovados; }
     continuar = menu();
   }
-  while (continuar = 1);
   printf ("\n%d\n", aprovados);
 }
