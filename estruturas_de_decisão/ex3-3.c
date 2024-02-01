@@ -33,4 +33,5 @@ int main (){
       printf ("O aluno foi reprovado pois a sua média foi %.2f\n", mf);
     }
   }
+  return 0;
 }

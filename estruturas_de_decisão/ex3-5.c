@@ -30,4 +30,5 @@ int main (){
       printf ("NÃO ATENDE CONDIÇÃO\n");
     }
   }
+  return: 0;
 }

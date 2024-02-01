@@ -11,3 +11,7 @@ LIDO.
 */
 
 #include <stdio.h>
+
+int main (){
+  
+}
