@@ -10,7 +10,7 @@ um mês completo (resto).
 #include <stdio.h>
 
 int main (){
-  int dias, meses, cont;
+  int dias, meses, cont = 1;
   printf ("Digite a quantidade de dias: ");
   scanf ("%d", &dias);
   while (dias >= 30) {
@@ -18,7 +18,7 @@ int main (){
       dias = dias - 1;
       cont++;
     }
-    cont = 0;
+    cont = 1;
     meses++;
   }
   printf ("Meses: %d\n", meses);
