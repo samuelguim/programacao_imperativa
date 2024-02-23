@@ -11,17 +11,13 @@ int main () {
     scanf ("%d", &port);
     if (port >= 0) {
       scanf ("%d", &mat);
-      scanf ("%f", &red);
-    }
+      scanf ("%f", &red); }
     else {
-      break;
-    }
+      break;}
     if (port >= 40 && mat >= 21 && red >= 7){
-      aprovados++;
-    }
+      aprovados++;}
     else {
-      aprovados = aprovados;
-    }
+      aprovados = aprovados;}
   }
   while (port >=0);
   printf ("\n%d\n", aprovados);
