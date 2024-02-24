@@ -1,55 +1,16 @@
 {
+  // Use o IntelliSense para saber mais sobre os atributos possíveis.
+  // Focalizar para exibir as descrições dos atributos existentes.
+  // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "C/C++: gcc Compilar e depurar o arquivo ativo",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
-      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "name": "Debug",
+      "program": "${workspaceFolder}/<executable file>",
       "args": [],
-      "stopAtEntry": false,
-      "cwd": "${fileDirname}",
-      "environment": [],
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "setupCommands": [
-        {
-          "description": "Habilitar a reformatação automática para gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        },
-        {
-          "description": "Definir Tipo de Desmontagem como Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        }
-      ],
-      "existing": false,
-      "preLaunchTask": "C/C++: gcc arquivo de build ativo",
-      "detail": "preLaunchTask: C/C++: gcc arquivo de build ativo",
-      "taskDetail": "Tarefa gerada pelo Depurador.",
-      "taskStatus": "Recently Used Task",
-      "isDefault": true,
-      "miDebuggerPath": "/usr/bin/gdb"
-    },
-    {
-      "name": "C/C++ Runner: Debug Session",
-      "type": "cppdbg",
-      "request": "launch",
-      "args": [],
-      "stopAtEntry": false,
-      "externalConsole": false,
-      "cwd": "/home/samuel/Documentos/programacao_imperativa/for",
-      "program": "/home/samuel/Documentos/programacao_imperativa/for/build/Debug/outDebug",
-      "MIMode": "gdb",
-      "miDebuggerPath": "gdb",
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        }
-      ]
+      "cwd": "${workspaceFolder}"
     }
   ]
 }
