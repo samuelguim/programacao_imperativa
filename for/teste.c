@@ -36,23 +36,23 @@ pelo menos 1 função.
 #include <stdio.h>
 
 //máximo
-void Maximo(int NumPassageiros, int *MaisPassageiros, int *MelhorHorario, int Horas) {
-  if (NumPassageiros > *MaisPassageiros){
-      *MelhorHorario = Horas;
-      *MaisPassageiros = NumPassageiros;}
+void Maximo(int NumPassageiros, int MaisPassageiros, int MelhorHorario, int Horas) {
+  if (NumPassageiros > MaisPassageiros){
+      MelhorHorario = Horas;
+      MaisPassageiros = NumPassageiros;}
 }
 
 //mínimo
-void Mínimo(int NumPassageiros, int *MaisPassageiros, int *PiorHorario, int Horas) {
+void Mínimo(int NumPassageiros, int MaisPassageiros, int PiorHorario, int Horas) {
   
-  if (NumPassageiros < *MaisPassageiros){
-      *PiorHorario = Horas;
-      *MaisPassageiros = NumPassageiros;}
+  if (NumPassageiros < MaisPassageiros){
+      PiorHorario = Horas;
+      MaisPassageiros = NumPassageiros;}
 } 
 
 //soma
-void Soma (int NumPassageiros, int *SomaPas) {
-*SomaPas = NumPassageiros + *SomaPas;
+void Soma (int NumPassageiros, int SomaPas) {
+SomaPas = NumPassageiros + SomaPas;
 }
   
 
@@ -61,10 +61,10 @@ int main() {
   MaisPassageiros = 0;
   for (Horas=8; Horas<=18; Horas++) {
     printf("Numero de passageiras do %d horas: ",Horas);
-    scanf("%d",&NumPassageiros);
-    Maximo(NumPassageiros, &MaisPassageiros, &MelhorHorario, Horas);
-    Mínimo(NumPassageiros, &MaisPassageiros, &PiorHorario, Horas);
-    Soma(NumPassageiros, &SomaPas);
+    scanf("%d", &NumPassageiros);
+    Maximo(NumPassageiros, MaisPassageiros, MelhorHorario, Horas);
+    Mínimo(NumPassageiros, MaisPassageiros, PiorHorario, Horas);
+    Soma(NumPassageiros, SomaPas);
   }
   
   printf("\nHorario de maior procura: %d.\n",MelhorHorario);
