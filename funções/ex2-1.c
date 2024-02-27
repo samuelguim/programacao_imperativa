@@ -31,5 +31,6 @@ int main (){
   else{
     printf ("%d caixa deve ser comprada.\n", n);
   }
+  
   return 0;
 }
