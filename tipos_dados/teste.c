@@ -1,12 +1,3 @@
-/*
-Escrever programa para ler o nome de uma pessoa,
-composto por nome e sobrenome (entre nome e
-sobrenome há um espaço em branco). E exibir,
-sobrenome em maiúsculo, seguido de vírgula e do nome
-da pessoa. Efetuar essa operação para tantas entradas quantas
-o usuário desejar.
-*/
-
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -51,14 +42,10 @@ void sobrenome (char Nome [31]) {
 
 int main () {
   char Nome [31];
-  int opc = 1;
-  while (opc == 1) {
-    printf ("Digite o seu nome: ");
-    fgets (Nome, 31, stdin);
-    fflush (stdin);
-    sobrenome(Nome);
-    primeiro_nome(Nome);
-    opc = menu();
-  }
+  printf ("Digite o seu nome: ");
+  fgets (Nome, 31, stdin);
+
+  sobrenome(Nome);
+  primeiro_nome(Nome);
 }
 
