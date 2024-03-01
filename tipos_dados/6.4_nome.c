@@ -40,8 +40,7 @@ void primeiro_nome (char Nome [31]) {
 void sobrenome (char Nome [31]) {
   for (int i = 1; i <= strlen(Nome); i++) {
     if (Nome[i-1] == ' ') {
-                                    //-1 para excluir \n
-      for (int j = i; j < strlen(Nome)-1; j++) {
+      for (int j = i; j < strlen(Nome); j++) {
         printf  ("%c", toupper (Nome[j]));
       }
     }
@@ -50,12 +49,11 @@ void sobrenome (char Nome [31]) {
 }
 
 int main () {
-  char Nome [31];
+  char Nome[31];
   int opc = 1;
   while (opc == 1) {
     printf ("Digite o seu nome: ");
-    fgets (Nome, 31, stdin);
-    fflush (stdin);
+    scanf(" %[^\n]s", Nome);
     sobrenome(Nome);
     primeiro_nome(Nome);
     opc = menu();

@@ -43,8 +43,12 @@ int main(){
   for (int i = 1; i <= 100; i++) {
     printf ("Digite o número da matrícula: ");
     scanf ("%s", matricula);
-    if (obter_ano(matricula) == anoA && obter_curso(matricula) == 97) {
-      alunos++;
+    if (strlen (matricula) == 10) {
+      if (obter_ano(matricula) == anoA && obter_curso(matricula) == 97) {
+      alunos++;}
+    }
+    else {
+      printf ("O número inserido não tem 10 digitos.\n");
     }
   }
 
