@@ -34,7 +34,7 @@ int main() {
   }
   else {
     printf ("O valor da compra não atende às condições necessárias\n");
-    printf ("para o parcelamento em até 10 vezes sem juros.\n;");
+    printf ("para o parcelamento em até 10 vezes sem juros.\n");
   }
   return 0;
 }

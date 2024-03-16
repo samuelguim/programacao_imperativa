@@ -16,5 +16,6 @@ int main() {
   for (int i = 1; i <= strlen(Palavra); i++) {
     printf ("%c", toupper(Palavra[i-1]));
   }
+  printf ("\n");
   return 0;
 }
