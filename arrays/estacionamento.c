@@ -93,6 +93,7 @@ void ClienteSai(){
         printf("\n>>>>>>>%s",Entrada);
         for (int i=0; i<7; i++){
             Placa[i] = toupper(Entrada[i]);}
+        Placa[8]='\0';
         //Teste
         printf("\n>>>>>>>Placa: %s",Placa);
         Hora[0] = Entrada[8];
@@ -113,19 +114,19 @@ void ClienteSai(){
         HoraSaida[0] = HorarioSaida[0];
         HoraSaida[1] = HorarioSaida[1];
         HoraSaida[2] = '\0';
-        Hsaida = atoi(Hora); // convete string em inteiro
+        Hsaida = atoi(HoraSaida); // convete string em inteiro
         MinSaida[0] = HorarioSaida[3];
         MinSaida[1] = HorarioSaida[4];
         MinSaida[2] = '\0';
-        Msaida = atoi(Min); // convete string em inteiro
+        Msaida = atoi(MinSaida); // convete string em inteiro
 
-        ValorAPagar = ((H-Hsaida)*Valor) + (M-Msaida * Valor);
-        printf ("\nValor a pagar: R$%.2f", ValorAPagar);
-        printf ("\nQual foi o valor pago pelo cliente? R$");
-        scanf ("%f", &ValorPago);
-
+        ValorAPagar = ((Hsaida-H)*Valor) + (Msaida-M * (Valor/60));
+        printf("\nValor a pagar: R$%.2f", ValorAPagar);
+        printf("\nQual foi o valor pago? R$");
+        scanf("%f", &ValorPago);
         printf ("\nTroco: R$%.2f", ValorAPagar-ValorPago);
-        Lucro[Vaga] = ValorAPagar;} //if (Iniciou)
+        Lucro[Vaga] = ValorAPagar;
+        strcpy(Estaciona[Vaga],"LIVRE");} //if (Iniciou)
     
     else{
     printf("\nERRO: Antes eh preciso abrir o caixa!\n");}
@@ -133,7 +134,7 @@ void ClienteSai(){
 }
 
 void FecharCaixa(){
-    int Total, Frequencia[30];
+    int Total=0, Frequencia[30];
     float Soma, Lucro[30];
     system("clear");
     system("color 80"); // 8 - cinza 0 - preto
