@@ -68,6 +68,7 @@ void ClienteChega(){
         printf("Chegada registrada com sucesso!\n");}
     else{
         printf("\nERRO: Antes eh preciso abrir o caixa!\n");}
+
     system("read -p 'Pressione Enter para continuar...' var");
 }
 
