@@ -61,6 +61,7 @@ void SelecionaCaracteristica(float Matriz[][6],int *C){
   *C=Op-1;};
 
 void AlteraDado (float Matriz [][6]){
+  system("clear");
   float Alteracao;
   SelecionaFreezer(M,&Frz);
   SelecionaCaracteristica(M,&Crc);
@@ -71,21 +72,40 @@ void AlteraDado (float Matriz [][6]){
 
 void MelhorCaracteristica (float Matriz [][6], int Caracteristica){
   system("clear");
-  float MelhorCar = 0;
+  float MelhorCar = Matriz [Caracteristica][0];
   int i;
-  char MelhorFrz [5];
-  for (i=0; i<6; i++){
-    if (Matriz [Caracteristica][i] > MelhorCar) {
-      MelhorCar = Matriz[0][i];
-      if (i==0) strcpy(MelhorFrz,"Deia");
-      if (i==1) strcpy(MelhorFrz,"Sul");
-      if (i==2) strcpy(MelhorFrz,"Nsul");
-      if (i==3) strcpy(MelhorFrz,"Frio");
-      if (i==4) strcpy(MelhorFrz,"Fri");
-      if (i==5) strcpy(MelhorFrz,"Lux");
+  char MelhorFrz [5] = "Deia";
+  if (Caracteristica == 3 || Caracteristica == 2) {
+    for (i=0; i<6; i++){
+      if (Matriz [Caracteristica][i] < MelhorCar) {
+        MelhorCar = Matriz[Caracteristica][i];
+        if (i==0) strcpy(MelhorFrz,"Deia");
+        if (i==1) strcpy(MelhorFrz,"Sul");
+        if (i==2) strcpy(MelhorFrz,"Nsul");
+        if (i==3) strcpy(MelhorFrz,"Frio");
+        if (i==4) strcpy(MelhorFrz,"Fri");
+        if (i==5) strcpy(MelhorFrz,"Lux");
+      }
     }
   }
-  printf ("O melhor freezer em capacidade é o %s e tem %.1f de capacidade.\n", MelhorFrz, MelhorCar);
+  else {
+    for (i=0; i<6; i++){
+      if (Matriz [Caracteristica][i] > MelhorCar) {
+        MelhorCar = Matriz[0][i];
+        if (i==0) strcpy(MelhorFrz,"Deia");
+        if (i==1) strcpy(MelhorFrz,"Sul");
+        if (i==2) strcpy(MelhorFrz,"Nsul");
+        if (i==3) strcpy(MelhorFrz,"Frio");
+        if (i==4) strcpy(MelhorFrz,"Fri");
+        if (i==5) strcpy(MelhorFrz,"Lux");
+      }
+    }
+  }
+
+  if (Caracteristica==0) printf("O freezer %s tem %.1f litros de capacidade e é o melhor nesse aspecto.\n", MelhorFrz, MelhorCar);
+  if (Caracteristica==1) printf("O freezer %s tem %.1f meses de garantia e é o melhor nesse aspecto.\n", MelhorFrz, MelhorCar);
+  if (Caracteristica==2) printf("O freezer %s consome %.1f KWh por mês e é o melhor no aspecto economia.\n", MelhorFrz, MelhorCar);
+  if (Caracteristica==3) printf("O freezer %s tem %.1fºC de temperatura e é o melhor nesse aspecto.\n", MelhorFrz, MelhorCar);
 }
 
 int main(){

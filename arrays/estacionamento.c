@@ -6,19 +6,21 @@
 float Valor;
 char Responsavel[21], Iniciou = 0;
 char Estaciona[30][14];
-int Frequencia[30], Carros[30];
+int Frequencia[15], Carros[30];
 float Lucro[30];
 
 void AbrirCaixa(){
     char Estaciona[30][14];
     system("clear");
-    system("color 80"); // 8 - cinza 0 - preto
     printf("\n >>> Estacionamento <<< \n");
     printf(" >>> Largas Vagas <<< \n");
     printf("\n ABRINDO CAIXA \n");
 
     for (int i=0; i<30; i++){
         Frequencia[i] = 0;}
+   
+    for (int i=0; i<30; i++){
+        Carros[i] = 0;}
 
     for (int j=0; j<30; j++){
         Lucro[j] = 0;}
@@ -38,16 +40,18 @@ void ClienteChega(){
     int Vaga, H1;
     char Placa[8], Hora[5], Entrada[14], HoraConversao[2];
     system("clear");
-    system("color 80"); // 8 - cinza 0 - preto
     printf("\n >>> Estacionamento <<< \n");
     printf(" >>> Largas Vagas <<< \n");
     printf("\n CHEGADA DE CLIENTE \n");
     if (Iniciou){
         printf("\n CAIXA ABERTO Valor/h: %.2f", Valor);
         printf("\n Responsavel: %s\n\n", Responsavel);
-        printf("Qual a vaga ocupada? ");
-        scanf("%d",&Vaga);
-        fflush(stdin);
+        do {
+            printf("Qual a vaga ocupada? (Caso ela esteja em uso, escolha outra) ");
+            scanf("%d",&Vaga);
+            fflush(stdin);
+        } while (Carros[Vaga] == 1);
+        
         printf("Qual a placa do veiculo [7 digitos]? ");
         scanf(" %[^\n]s", Placa);
         strcpy(Entrada,Placa);
@@ -63,7 +67,7 @@ void ClienteChega(){
         HoraConversao[2] = '\0';
         H1 = atoi(HoraConversao); // convete string em inteiro
 
-        Frequencia[Vaga] = H1;
+        Frequencia[H1-6] = Frequencia[H1-6] + 1;
         Carros[Vaga] = 1;
 
         printf("Chegada registrada com sucesso!\n");}
@@ -79,7 +83,6 @@ void ClienteSai(){
     int H, M, Hsaida, Msaida; //hora, minuto e segundo
     float ValorAPagar, ValorPago;
     system("clear");
-    system("color 80"); // 8 - cinza 0 - preto
     printf("\n >>> Estacionamento <<< \n");
     printf(" >>> Largas Vagas <<< \n");
     printf("\n SAIDA DE CLIENTE \n");
@@ -127,23 +130,20 @@ void ClienteSai(){
         printf("\nValor a pagar: R$%.2f", ValorAPagar);
         printf("\nQual foi o valor pago? R$");
         scanf("%f", &ValorPago);
-        fflush(stdin);
-        printf("\nTroco: R$%.2f", ValorAPagar-ValorPago);
+        printf("\nTroco: R$%.2f", ValorPago-ValorAPagar);
 
-        Lucro[Vaga]=ValorAPagar;
+        Lucro[Vaga]=Lucro[Vaga]+ValorAPagar;
         Carros[Vaga] = 0; } //if (Iniciou)
     
     else{
-    printf("\nERRO: Antes eh preciso abrir o caixa!\n");}
-    system("read -p 'Pressione Enter para continuar...' var");
-
+        printf("\nERRO: Antes eh preciso abrir o caixa!\n");}
+        system("read -p 'Pressione Enter para continuar...' var");
 }
 
 void FecharCaixa(){
     int Total=0, TotalCarros=0;
     float Soma=0;
     system("clear");
-    system("color 80"); // 8 - cinza 0 - preto
     printf("\n >>> Estacionamento <<< \n");
     printf(" >>> Largas Vagas <<< \n");
     printf("\n FECHANDO CAIXA \n");
@@ -152,11 +152,7 @@ void FecharCaixa(){
 
         printf(" >>> Frequência de entrada em cada horário <<<");
         for (int i = 6; i < 20; i++) {
-            for (int j = 0 ; j < 30; j++) {
-                if (Frequencia[j] == i) {
-                    Total++;} }
-            printf ("\n     %d Horas: %d entrada(s).", i, Total);
-            Total = 0;
+            printf ("\n     %d Horas: %d entrada(s).", i, Frequencia[i-6]);
         }
         
         for (int k = 0; k < 30; k++){
@@ -183,7 +179,6 @@ int main(){
     int Op;
     do{
         system("clear");
-        system("color 80"); // 8 - cinza 0 - preto
         printf("\n >>> Estacionamento <<< \n");
         printf(" >>> Largas Vagas <<< \n");
         printf("\n 1 - Abrir Caixa");
