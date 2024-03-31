@@ -10,11 +10,12 @@ int bbinaria (char chave[21], int inicio, int fim, char vetor[10][21]) {
       if (strcmp(chave, vetor[meio]) < 0){
         return bbinaria (chave, meio+1, fim, vetor);}
       else {
-        return bbinaria (chave, inicio, meio-1, vetor); }}}
+        return bbinaria (chave, inicio, meio-1, vetor); }}
+}
 
 
 int main (){
-  printf ("%d", strcmp("DIRECAO", "FELICIDADE"));
+  printf ("%d", strcmp("FELICIDADE", "DIRECAO"));
   char vetor_palavras[10][21] = {"AMOR","ATENCAO","BELEZA","BELO","DIRECAO","FELICIDADE","FELIZ","MALETA","REVOLTA","SABIO"};
   char palavra[21];
   int posicao;
