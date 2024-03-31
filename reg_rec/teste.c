@@ -1,21 +1,18 @@
 #include <stdio.h>
+#include <string.h>
 
-// Função que recebe um vetor de strings como parâmetro
-void imprimirStrings(char **vetorStrings, int tamanho) {
-    for (int i = 0; i < tamanho; i++) {
-        printf("%s\n", vetorStrings[i]);
-    }
+void trocar(char vetor[10][21], int primeiro, int segundo){
+  char terceiro[21];
+  strcpy(terceiro, vetor[primeiro]);
+  strcpy(vetor[primeiro], vetor[segundo]);
+  strcpy(vetor[segundo], terceiro);
 }
 
-int main() {
-    // Definindo um vetor de strings
-    char *strings[] = {"Primeira", "Segunda", "Terceira"};
-
-    // Obtendo o tamanho do vetor de strings
-    int tamanho = sizeof(strings) / sizeof(strings[0]);
-
-    // Chamando a função e passando o vetor de strings como parâmetro
-    imprimirStrings(strings, tamanho);
-
-    return 0;
+int main (){
+  char vetor_palavras[10][21] = {"AMOR","ATENCAO","BELEZA","BELO","DIRECAO","FELICIDADE","FELIZ","MALETA","REVOLTA","SABIO"};
+  trocar (vetor_palavras, 2, 4);
+  for (int i = 0; i < 10; i++){
+    printf("%s\n", vetor_palavras[i]);
+  }
+  return 0;
 }
