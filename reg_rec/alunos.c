@@ -8,9 +8,9 @@ int main (){
     float Nota1, Nota2, Nota3;
     int Frequencia;
     float MediaIndividual;
-  };
+  } Aluno;
   
-  struct TpAluno Aluno[3];
+  Aluno Alunos[3];
   float MediaTurma = 0, Soma = 0;
 
   //coleta variáveis
