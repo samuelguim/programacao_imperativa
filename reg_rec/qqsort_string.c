@@ -26,7 +26,7 @@ int particionamento(char vetor[10][21], int inicio, int fim){
 }
 
 
-void qqsort(char vetor[10][21], int inicio, int fim){
+void qqsort(char vetor[25][21], int inicio, int fim){
   if (inicio < fim){
     int posicao_pivot = particionamento(vetor, inicio, fim);
     qqsort(vetor, inicio, posicao_pivot - 1);
@@ -35,19 +35,21 @@ void qqsort(char vetor[10][21], int inicio, int fim){
 }
 
 int main () {
-  char vetor_palavras[10][21] = {"DIRECAO","FELIZ","BELEZA","MALETA","AMOR","FELICIDADE","FELIZ","BELO","REVOLTA","ATENCAO"};
+  char vetor_palavras[25][21] = {"DIRECAO","FELIZ","BELEZA","MALETA","AMOR","FELICIDADE","FELIZ","BELO","REVOLTA","ATENCAO",
+                                "REVOLTA","CARINHO","AZUL","VERMELHO","AMARELO","CINZA","MARROM","ROSA","MAGENTA","AR",
+                                "OBJETO","CALCULADORA","FIO","ELETRICIDADE","AULA"};
   
   /*
-  for(int i = 0; i < 10; i++){
+  for(int i = 0; i < 25; i++){
     printf ("Digite uma palavra: ");
     scanf (" %[^\n]s", vetor_palavras[i]);
   }
   */
 
-  qqsort(vetor_palavras, 0, 9);
+  qqsort(vetor_palavras, 0, 24);
   
   printf ("Palavras alfabeticamente ordenadas: \n");
-  for(int i = 0; i < 10; i++){
+  for(int i = 0; i < 25; i++){
     printf ("%s\n", vetor_palavras[i]);
   }
 

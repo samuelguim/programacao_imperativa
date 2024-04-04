@@ -8,13 +8,13 @@ int main (){
     float Nota1, Nota2, Nota3;
     int Frequencia;
     float MediaIndividual;
-  } Aluno;
+  };
   
-  Aluno Alunos[3];
+  struct TpAluno Aluno[80];
   float MediaTurma = 0, Soma = 0;
 
   //coleta variáveis
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 80; i++) {
     printf ("Digite o nome do aluno(a): ");
     scanf(" %[^\n]s", Aluno[i].Nome);
     printf ("Digite a Nota 1 do aluno(a): ");
@@ -29,16 +29,16 @@ int main (){
   }
 
   //calcula média
-  for (int j = 0; j < 3; j++){
+  for (int j = 0; j < 80; j++){
     Soma = Soma + Aluno[j].MediaIndividual;
   }
-  MediaTurma = Soma/3;
+  MediaTurma = Soma/80;
 
   //imprime na tela
   printf ("-----------------------\n");
   printf ("Média da Turma: %.2f\n", MediaTurma);
 
-  for (int k = 0; k < 3; k++){
+  for (int k = 0; k < 80; k++){
     printf ("-----------------------\n");
     printf ("Aluno: %s\n", Aluno[k].Nome);
     printf ("Média: %.2f\n", Aluno[k].MediaIndividual);
