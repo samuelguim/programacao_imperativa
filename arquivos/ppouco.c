@@ -75,14 +75,16 @@ void Excluir(){
     char Farmaco[21];
     scanf("%s",Farmaco);
     int Achou = ProcuraFarmaco(Farmaco);
-    if (Achou==0 && RgFarma.Ativo == 0)
+    if (Achou==0 && RgFarma.Ativo == 0){
       printf("Registro inexistente ou já excluído!"); 
+    }
     else{
       RgFarma.Ativo = 0;
       printf(">>> Exclusão efetuada com sucesso! <<<\n");}
-      system("read -p 'Pressione Enter para continuar...' var");
     fclose(ArqFarma);
-    ArqFarma=fopen("Farmacos.dat","a+b");}
+    ArqFarma=fopen("Farmacos.dat","a+b");
+    system("read -p 'Pressione Enter para continuar...' var");
+  }
   else{
     printf("Arquivo Vazio.  Nao existem dados a excluir.");}
     system("read -p 'Pressione Enter para continuar...' var");
