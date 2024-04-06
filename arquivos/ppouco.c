@@ -25,14 +25,14 @@ long int TArquivo(){
 
 int ProcuraFarmaco(char Farmaco[21]){
   int Achou=0;
-  do {
-	  fread(&RgFarma,Tamanho,1,ArqFarma);
-	  if (strcmp(RgFarma.Nome,Farmaco)==0 && RgFarma.Ativo == 1){
-	    Achou=1;	
-	    printf("Nome: %s\n",RgFarma.Nome);
-      printf("Valor: %f\n",RgFarma.Preco);
-      printf("Estoque: %d\n",RgFarma.QEstoque);}}
-  while (!feof(ArqFarma) && (Achou==0));
+    do {
+	    fread(&RgFarma,Tamanho,1,ArqFarma);
+	    if (strcmp(RgFarma.Nome,Farmaco)==0){
+	      Achou=1;	
+	      printf("Nome: %s\n",RgFarma.Nome);
+        printf("Valor: %f\n",RgFarma.Preco);
+        printf("Estoque: %d\n",RgFarma.QEstoque);}}
+    while (!feof(ArqFarma) && (Achou==0));
   return Achou;
 }
 
@@ -75,7 +75,7 @@ void Excluir(){
     char Farmaco[21];
     scanf("%s",Farmaco);
     int Achou = ProcuraFarmaco(Farmaco);
-    if (Achou==0)
+    if (Achou==0 && RgFarma.Ativo == 1)
       printf("Registro inexistente ou já excluído!"); 
     else{
       RgFarma.Ativo = 0;
@@ -100,7 +100,7 @@ void Alterar(){
     char Farmaco[21];
     scanf("%s",Farmaco);
     int Achou = ProcuraFarmaco(Farmaco);
-    if (Achou==0)
+    if (Achou==0 && RgFarma.Ativo == 1)
       printf("Registro inexistente!"); 
     else{
       printf("Qual o novo preco? \n"); 
@@ -114,7 +114,7 @@ void Alterar(){
     fclose(ArqFarma);
     ArqFarma=fopen("Farmacos.dat","a+b");}
   else{
-    printf("Arquivo Vazio.  Nao existem dados a alterar.");}
+    printf("Arquivo Vazio. Nao existem dados a alterar.");}
     system("pause");
   return;}
 
@@ -126,7 +126,7 @@ void Consultar(){
   char Farmaco[21];
   scanf("%s",Farmaco);
   int Achou = ProcuraFarmaco(Farmaco);
-  if (Achou==0)
+  if (Achou==0 && RgFarma.Ativo == 1)
     printf("Registro inexistente!");  
   system("pause");
   return;}
