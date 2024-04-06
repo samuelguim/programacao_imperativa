@@ -46,7 +46,7 @@ void Incluir() {
     scanf("%s",Farmaco);
     int Repitido = ProcuraFarmaco(Farmaco);
     if (Repitido == 0){
-      strcpy(Farmaco,RgFarma.Nome);
+      strcpy(RgFarma.Nome, Farmaco);
       printf("Preco: ");
       scanf("%f",&RgFarma.Preco);
       printf("Estoque: ");
@@ -75,17 +75,17 @@ void Excluir(){
     char Farmaco[21];
     scanf("%s",Farmaco);
     int Achou = ProcuraFarmaco(Farmaco);
-    if (Achou==0 && RgFarma.Ativo == 1)
+    if (Achou==0 && RgFarma.Ativo == 0)
       printf("Registro inexistente ou já excluído!"); 
     else{
       RgFarma.Ativo = 0;
       printf(">>> Exclusão efetuada com sucesso! <<<\n");}
-      system("pause");
+      system("read -p 'Pressione Enter para continuar...' var");
     fclose(ArqFarma);
     ArqFarma=fopen("Farmacos.dat","a+b");}
   else{
     printf("Arquivo Vazio.  Nao existem dados a excluir.");}
-    system("pause");
+    system("read -p 'Pressione Enter para continuar...' var");
   return;
 }
 	
@@ -110,12 +110,12 @@ void Alterar(){
       fseek(ArqFarma,-Tamanho,1);
       fwrite(&RgFarma,Tamanho,1,ArqFarma);
       printf(">>> Alteracao efetuada com sucesso! <<<\n");}
-      system("pause");
+      system("read -p 'Pressione Enter para continuar...' var");
     fclose(ArqFarma);
     ArqFarma=fopen("Farmacos.dat","a+b");}
   else{
     printf("Arquivo Vazio. Nao existem dados a alterar.");}
-    system("pause");
+    system("read -p 'Pressione Enter para continuar...' var");
   return;}
 
 void Consultar(){
@@ -128,7 +128,7 @@ void Consultar(){
   int Achou = ProcuraFarmaco(Farmaco);
   if (Achou==0 && RgFarma.Ativo == 1)
     printf("Registro inexistente!");  
-  system("pause");
+  system("read -p 'Pressione Enter para continuar...' var");
   return;}
 
 void LTodos(){
@@ -143,7 +143,7 @@ void LTodos(){
         printf("Estoque: %d\n",RgFarma.QEstoque);
         printf("***\n\n");}}
   while (!feof(ArqFarma));
-  system("pause");
+  system("read -p 'Pressione Enter para continuar...' var");
   }
 
 int main(){
