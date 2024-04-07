@@ -75,7 +75,7 @@ void Excluir(){
     char Farmaco[21];
     scanf("%s",Farmaco);
     int Achou = ProcuraFarmaco(Farmaco);
-    if (Achou==0 && RgFarma.Ativo == 0){
+    if (Achou==0 || RgFarma.Ativo == 0){
       printf("Registro inexistente ou já excluído!"); 
     }
     else{
