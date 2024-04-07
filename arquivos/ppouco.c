@@ -7,7 +7,6 @@ struct TpFarma{
 	char Nome[21];
 	float Preco;
 	int QEstoque; 
-  int Ativo;
   };
   
 typedef struct TpFarma TpFARMA;
@@ -23,15 +22,24 @@ long int TArquivo(){
 	long int R=ftell(ArqFarma)/Tamanho;
 	return R;}
 
+void ExibirFarmaco(){
+  printf("Nome: %s\n",RgFarma.Nome);
+  printf("Valor: %.2f\n",RgFarma.Preco);
+  printf("Estoque: %d\n",RgFarma.QEstoque);
+  if (RgFarma.QEstoque >= 0){
+    printf("Status: Ativo\n");}
+  else{
+    printf("Status: Excluído\n");}
+  
+}
+
 int ProcuraFarmaco(char Farmaco[21]){
   int Achou=0;
+  fseek(ArqFarma,0,0);
     do {
-	    fread(&RgFarma,Tamanho,1,ArqFarma);
+	    fread(&RgFarma,sizeof(RgFarma),1,ArqFarma);
 	    if (strcmp(RgFarma.Nome,Farmaco)==0){
-	      Achou=1;	
-	      printf("Nome: %s\n",RgFarma.Nome);
-        printf("Valor: %f\n",RgFarma.Preco);
-        printf("Estoque: %d\n",RgFarma.QEstoque);}}
+	      Achou=1;}}
     while (!feof(ArqFarma) && (Achou==0));
   return Achou;
 }
@@ -45,15 +53,14 @@ void Incluir() {
     char Farmaco[21];
     scanf("%s",Farmaco);
     int Repitido = ProcuraFarmaco(Farmaco);
-    if (Repitido == 0){
+    if (Repitido == 0 || RgFarma.QEstoque < 0){
       strcpy(RgFarma.Nome, Farmaco);
       printf("Preco: ");
       scanf("%f",&RgFarma.Preco);
       printf("Estoque: ");
       scanf("%d",&RgFarma.QEstoque);
-      RgFarma.Ativo = 1;
       fseek(ArqFarma,0,2);
-      fwrite(&RgFarma,Tamanho,1,ArqFarma);}
+      fwrite(&RgFarma,sizeof(RgFarma),1,ArqFarma);}
     else {
       printf("Operação não concluída pois um fármaco com o mesmo nome já foi cadastrado.\n");
       printf("Caso queira alterará-lo, selecione a opção Alterar no menu principal.\n");}
@@ -75,22 +82,24 @@ void Excluir(){
     char Farmaco[21];
     scanf("%s",Farmaco);
     int Achou = ProcuraFarmaco(Farmaco);
-    if (Achou==0 || RgFarma.Ativo == 0){
-      printf("Registro inexistente ou já excluído!"); 
-    }
+    if (Achou==0 || RgFarma.QEstoque < 0)
+      printf("Registro inexistente!"); 
     else{
-      RgFarma.Ativo = 0;
+      RgFarma.QEstoque = -1;
+      ExibirFarmaco();
       printf(">>> Exclusão efetuada com sucesso! <<<\n");}
     fclose(ArqFarma);
-    ArqFarma=fopen("Farmacos.dat","a+b");
-    system("read -p 'Pressione Enter para continuar...' var");
-  }
+    ArqFarma=fopen("Farmacos.dat","a+b");}
   else{
-    printf("Arquivo Vazio.  Nao existem dados a excluir.");}
-    system("read -p 'Pressione Enter para continuar...' var");
+    printf("Arquivo Vazio. Nao existem dados a alterar.");}
+  system("read -p 'Pressione Enter para continuar...' var");
   return;
 }
-	
+
+void Alterar1(){
+
+}
+
 void Alterar(){
   if (TArquivo()!=0){
     fclose(ArqFarma); //modo a + b
@@ -102,22 +111,22 @@ void Alterar(){
     char Farmaco[21];
     scanf("%s",Farmaco);
     int Achou = ProcuraFarmaco(Farmaco);
-    if (Achou==0 && RgFarma.Ativo == 1)
+    if (Achou==0 || RgFarma.QEstoque < 0)
       printf("Registro inexistente!"); 
     else{
+      ExibirFarmaco();
       printf("Qual o novo preco? \n"); 
       scanf("%f",&RgFarma.Preco);
       printf("Qual a nova quantidade? \n");
       scanf("%d",&RgFarma.QEstoque);
-      fseek(ArqFarma,-Tamanho,1);
-      fwrite(&RgFarma,Tamanho,1,ArqFarma);
+      fseek(ArqFarma,-sizeof(RgFarma),1);
+      fwrite(&RgFarma,sizeof(RgFarma),1,ArqFarma);
       printf(">>> Alteracao efetuada com sucesso! <<<\n");}
-      system("read -p 'Pressione Enter para continuar...' var");
     fclose(ArqFarma);
     ArqFarma=fopen("Farmacos.dat","a+b");}
   else{
     printf("Arquivo Vazio. Nao existem dados a alterar.");}
-    system("read -p 'Pressione Enter para continuar...' var");
+  system("read -p 'Pressione Enter para continuar...' var");
   return;}
 
 void Consultar(){
@@ -128,8 +137,10 @@ void Consultar(){
   char Farmaco[21];
   scanf("%s",Farmaco);
   int Achou = ProcuraFarmaco(Farmaco);
-  if (Achou==0 && RgFarma.Ativo == 1)
-    printf("Registro inexistente!");  
+  if (Achou == 0 || RgFarma.QEstoque < 0){
+    printf("Registro inexistente!");}
+  else {
+    ExibirFarmaco();}
   system("read -p 'Pressione Enter para continuar...' var");
   return;}
 
@@ -138,15 +149,13 @@ void LTodos(){
   printf("*** lista todos ***\n\n"); 
   fseek(ArqFarma,0,0);
   do {
-	  fread(&RgFarma,Tamanho,1,ArqFarma);
-	  if (!feof(ArqFarma) && RgFarma.Ativo == 1){
-	      printf("Nome: %s\n",RgFarma.Nome);
-        printf("Valor: R$%.2f\n",RgFarma.Preco);
-        printf("Estoque: %d\n",RgFarma.QEstoque);
+	  fread(&RgFarma,sizeof(RgFarma),1,ArqFarma);
+	  if (!feof(ArqFarma)){
+	      ExibirFarmaco();
         printf("***\n\n");}}
   while (!feof(ArqFarma));
   system("read -p 'Pressione Enter para continuar...' var");
-  }
+}
 
 int main(){
   ArqFarma=fopen("Farmacos.dat","a+b");
