@@ -51,11 +51,13 @@ void ImportaServicos(){
   int i = 0;
   do {
     fread(&SobraVZonda,sizeof(SobraVZonda),1,ArqZonda);
-    if (SobraVZonda.Status == '0' || SobraVZonda.Status == '0'){
+    if (SobraVZonda.Status == '0' || SobraVZonda.Status == '1'){
       VZonda[i] = SobraVZonda;
       Quant++;
       i++;
       SobraVZonda.Status = '4';
+      fseek(ArqZonda,-sizeof(SobraVZonda),1);
+      fwrite(&SobraVZonda,sizeof(SobraVZonda),1,ArqZonda);
     }
   } while (!feof(ArqZonda));
   fclose(ArqZonda); //modo a + b
@@ -197,6 +199,7 @@ void EncerrarExpediente(){
       Lucro = Lucro + VZonda[Cont].Preco;}}
   printf("\n--------------------");
   printf("\nValor total: R$%.2f\n", Lucro);
+  
   VFinanceiro.Valor = Lucro;
   fseek(ArqFinanceiro,0,2);
   fwrite(&VFinanceiro,sizeof(VFinanceiro),1,ArqFinanceiro);
