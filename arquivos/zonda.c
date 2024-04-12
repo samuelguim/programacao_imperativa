@@ -234,7 +234,7 @@ int main(){
   ArqFinanceiro=fopen("Financeiro.dat","a+b");
   ImportaServicos();
 
-  int Opcao;
+  int Opcao, Expediente = 1;
    //limpa tela no ReplIt
   do{
     system("clear");
@@ -256,7 +256,7 @@ int main(){
 	    case 2: IniciaServico();
               system("read -p '--------------------\nPressione Enter para continuar...' var"); break;
 	    case 3: RemoverSolicitacao();
-              system("read -p '--------------------\nPressione Enter para continuar...' var"); break;
+              system("read -p '--------------------\nPrdessione Enter para continuar...' var"); break;
 	    case 4: ConsultarSolicitacoes();
               system("read -p '--------------------\nPressione Enter para continuar...' var"); break;
 	    case 5: ConcluirServico();
